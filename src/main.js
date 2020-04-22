@@ -39,9 +39,13 @@ export const store = {
 };
 
 firebase.auth().onAuthStateChanged((user) => {
-    store.currentUser = user;
-    router.replace('/');
-    setTasksCollection();
+    if (user) {
+        store.currentUser = user;
+        router.replace('/');
+        setTasksCollection();
+    } else {
+        router.replace('/login');
+    }
 });
 
 function setTasksCollection() {

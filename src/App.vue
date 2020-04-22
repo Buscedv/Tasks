@@ -17,6 +17,10 @@
         --accent: #03a9f4;
     }
 
+    ::-webkit-scrollbar {
+        border: none;
+    }
+
     body {
         padding: 0;
         margin: 0;

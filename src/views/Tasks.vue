@@ -1,14 +1,15 @@
 <template>
     <main class="container">
+        <Navbar></Navbar>
         <h2>To-Do</h2>
         <div id="add-task">
             <div class="task row">
-                <div class="col-md-10 task-text-row editing">
+                <div class="col-xs-10 task-text-row editing new">
                     <div class="task-row row">
-                        <div class="col-md-2">
+                        <div class="col-xs-2">
                             <em class="fas fa-plus task-before"></em>
                         </div>
-                        <div class="col-md-10 task-input-col">
+                        <div class="col-xs-10 task-input-col">
                             <input type="text" v-model="taskText" @keyup="checkForEnterAdd" placeholder="Task..." id="new-task-input">
                         </div>
                     </div>
@@ -22,21 +23,21 @@
         </div>
         <div id="tasks" v-for="(task, index) in sortedTasks" :key="index">
             <div class="task row">
-                <div class="col-md-10 task-text-row">
+                <div class="col-xs-10 task-text-row">
                     <div class="task-row row">
-                        <div class="col-md-2">
+                        <div class="col-xs-2">
                             <em class="far fa-circle task-before"></em>
                         </div>
-                        <div class="col-md-10 task-input-col">
+                        <div class="col-xs-10 task-input-col">
                             <input type="text" @keyup="checkForEnterSave" :class="(task.edit) ? 'editing' : ''" :disabled="!task.edit" :value="task.task" placeholder="Task..." :id="'task' + index">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-xs-2">
                     <div class="row btn-row">
-                        <button @click="editTask(task, index)" v-show="!task.edit"><em class="fas fa-edit"></em></button>
-                        <button @click="storeEditTask" v-show="task.edit"><em class="fas fa-save"></em></button>
-                        <button @click="deleteTask" v-show="task.edit"><em class="fas fa-trash"></em></button>
+                        <button @click="editTask(task, index)" v-show="!task.edit"><em class="far fa-edit"></em></button>
+                        <button @click="storeEditTask" v-show="task.edit"><em class="far fa-save"></em></button>
+                        <button @click="deleteTask" v-show="task.edit"><em class="fas fa-trash-alt"></em></button>
                     </div>
                 </div>
             </div>
@@ -46,9 +47,11 @@
 
 <script>
     import { store } from '../main'
+    import Navbar from "../components/Navbar";
 
     export default {
         name: 'Home',
+        components: {Navbar},
         data() {
             return {
                 taskText: '',
@@ -87,7 +90,7 @@
                 if (this.checkForEnter(e)) {
                     this.storeEditTask();
                 }
-            }
+            },
         },
         computed: {
             sortedTasks() {
@@ -95,10 +98,6 @@
             },
         },
         mounted() {
-            if (store.currentUser === null) {
-                this.$router.replace('/login');
-            }
-
             document.querySelector('#new-task-input').focus();
         }
     }
@@ -106,7 +105,7 @@
 
 <style scoped>
     main {
-        height: 100vh;
+        max-height: 100vh;
         padding: 50px;
     }
 
@@ -128,14 +127,23 @@
         z-index: 99;
         background-color: #fff;
         width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     .task {
         border-bottom: 1px solid #eee;
         padding: 10px;
+        margin-left: 2px;
+        margin-right: 2px;
         margin-bottom: 12px;
         display: flex;
         align-items: center;
+        background-color: #fff;
+    }
+
+    #add-task .task {
+        padding-left: 5px;
     }
 
     .task-row {
@@ -150,7 +158,11 @@
     .task-before {
         color: var(--accent);
         padding-right: 10px;
-        padding-left: 5px;
+        padding-left: 10px;
+    }
+
+    #add-task .task-before {
+        padding-left: 16px;
     }
 
     .task-input-col {
@@ -164,6 +176,7 @@
         margin-right: 10px;
         padding: 4px;
         width: 100%;
+        background: none;
     }
 
     .task button {
@@ -171,7 +184,12 @@
         font-size: 1.5em;
         display: flex;
         align-items: center;
-        color: #555;
+        color: #888;
+        background: none;
+    }
+
+    #add-task .task button {
+        padding-left: 15px;
     }
 
     .task button:hover {
@@ -179,7 +197,7 @@
         color: #555;
     }
 
-    .task:hover, .task .editing {
+    .task:hover, .task .editing:not(.new) {
         -webkit-box-shadow: 0 3px 2px -2px #ccc;
         -moz-box-shadow: 0 3px 2px -2px #ccc;
         box-shadow: 0 3px 2px -2px #ccc;
@@ -189,5 +207,45 @@
         padding-left: 10px;
     }
 
+    .open-task-text {
+        overflow-y: scroll;
+        max-height: 40vh;
+    }
 
+    @media screen and (max-width: 600px) {
+        main {
+            padding: 10px;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .task-before {
+            padding-right: 1px;
+            padding-left: 1px;
+        }
+
+        .task-input-col {
+            width: 80%;
+        }
+
+        .task input {
+            margin-right: 0;
+            font-size: 1em;
+        }
+
+        .task button {
+            font-size: 1em;
+        }
+    }
+
+    @media screen and (max-width: 310px) {
+
+    }
+
+</style>
+
+<style>
+    ::-webkit-scrollbar {
+        border: none;
+    }
 </style>
