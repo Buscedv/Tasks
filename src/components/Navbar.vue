@@ -1,7 +1,5 @@
 <template>
-    <nav>
-        <button @click.prevent="signOut"><em class="fas fa-sign-out-alt"></em></button>
-    </nav>
+    <button @click.prevent="signOut"><em class="fas fa-sign-out-alt"></em></button>
 </template>
 
 <script>
@@ -20,27 +18,17 @@
 </script>
 
 <style scoped>
-    nav {
-        padding: 10px;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: flex;
-        align-items: center;
-    }
-
-    nav button {
-        margin-left: auto;
-        margin-right: 20px;
-        padding: 5px;
+    button {
         background: none;
         border: none;
         font-size: 1.5em;
         color: #777;
+        position: absolute;
+        top: 10px;
+        right: 20px;
     }
 
-    nav button:hover {
+    button:hover {
         color: #444;
         cursor: pointer;
     }

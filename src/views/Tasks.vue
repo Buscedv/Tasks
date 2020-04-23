@@ -214,7 +214,10 @@
 
     @media screen and (max-width: 600px) {
         main {
-            padding: 10px;
+            padding: 2px;
+        }
+        .task {
+            padding: 2px;
         }
     }
 
