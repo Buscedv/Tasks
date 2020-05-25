@@ -9,14 +9,14 @@ import 'firebase/firestore';
 import 'firebase/analytics'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAu3SpMDe2ia0q0AfEHJqsNuYjIKhWNp38",
-    authDomain: "tasks-edvard-io.firebaseapp.com",
-    databaseURL: "https://tasks-edvard-io.firebaseio.com",
-    projectId: "tasks-edvard-io",
-    storageBucket: "tasks-edvard-io.appspot.com",
-    messagingSenderId: "184511577269",
-    appId: "1:184511577269:web:dc2b182fe6699991f4d2fc",
-    measurementId: "G-VR4TVH6342"
+    apiKey: "AIzaSyBgFllx96Iow8yVdkt2mEBiRmSuWwxtGvU",
+    authDomain: "tasks-edvard-dev.firebaseapp.com",
+    databaseURL: "https://tasks-edvard-dev.firebaseio.com",
+    projectId: "tasks-edvard-dev",
+    storageBucket: "tasks-edvard-dev.appspot.com",
+    messagingSenderId: "882616965823",
+    appId: "1:882616965823:web:9c54411cc27da435a2c40a",
+    measurementId: "G-56F37KRP4V"
 };
 
 firebase.initializeApp(firebaseConfig);
